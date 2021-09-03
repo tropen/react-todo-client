@@ -1,6 +1,8 @@
 import * as types from '../constants/ActionTypes';
 
 export const saveAuthKey = (authKey) => ({ type: types.SAVE_AUTH_KEY, authKey });
+export const signIn = () => ({ type: types.FETCH_AUTH_KEY });
+export const signOut = () => ({ type: types.SIGN_OUT });
 export const getUsers = () => ({ type: types.SAVE_USERS });
 
 export const getTodos = () => ({ type: types.GET_TODOS });
