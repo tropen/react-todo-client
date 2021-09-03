@@ -1,27 +1,11 @@
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 import { apiCall } from '../util/axiosApi';
 import * as actionTypes from '../constants/ActionTypes';
-// eslint-disable-next-line no-unused-vars
-import { getTodos, getUsers, saveAuthKey } from "../actions";
+import { fetchAuthKey } from "./auth";
+import { fetchUsers } from "./user";
 
-export function* fetchAuthKey() {
-  try {
-    const data = yield call(apiCall, { method: 'POST', url: '/signin' });
-    yield put(saveAuthKey(data.authKey));
-  } catch (error) {
-    console.log(error);
-  }
-}
 
-export function* fetchUsers() {
-  try {
-    const data = yield call(apiCall, { method: 'GET', url: '/user', token: true });
-    console.log('fetch users', data);
-    // yield put(saveUser(data.authKey));
-  } catch (error) {
-    console.log(error);
-  }
-}
+
 
 export function* fetchTodos() {
   try {
