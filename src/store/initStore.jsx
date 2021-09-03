@@ -44,7 +44,7 @@ const initStore = () => {
   sagaMiddleware.run(rootSaga);
 
   store.subscribe(throttle(() => {
-    saveState({ authKey: store.getState().authKey });
+    saveState(store.getState());
   }, 500)); //limit too many updates
 
   return store;

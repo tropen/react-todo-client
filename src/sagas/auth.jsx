@@ -1,12 +1,12 @@
 import { call, put } from "redux-saga/effects";
 import { apiCall } from "../util/axiosApi";
-import { saveAuthKey,  } from "../actions";
+import { fetchFailed, saveAuthKeyToStorage, } from "../actions";
 
 export function* fetchAuthKey() {
   try {
     const data = yield call(apiCall, { method: 'POST', url: '/signin' });
-    yield put(saveAuthKey(data.authKey));
+    yield put(saveAuthKeyToStorage(data.authKey));
   } catch (error) {
-    console.log(error);
+    yield put(fetchFailed(error));
   }
 }
