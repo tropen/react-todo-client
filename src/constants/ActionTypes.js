@@ -1,9 +1,9 @@
-export const SAVE_USERS = 'SAVE_USERS';
-export const FETCH_USERS = 'FETCH_USERS';
-
-export const SAVE_AUTH_KEY = 'SAVE_AUTH_KEY';
 export const FETCH_AUTH_KEY = 'FETCH_AUTH_KEY';
+export const SAVE_AUTH_KEY_TO_STORAGE = 'SAVE_AUTH_KEY_TO_STORAGE';
 export const SIGN_OUT = 'SIGN_OUT';
+
+export const SAVE_USERS_TO_STORAGE = 'SAVE_USERS_TO_STORAGE';
+export const FETCH_USERS = 'FETCH_USERS';
 
 export const FETCH_TODOS = 'FETCH_TODOS';
 export const GET_TODOS = 'GET_TODOS';

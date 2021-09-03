@@ -31,7 +31,8 @@ const initStore = () => {
   const saveState = (state) => {
     try {
       const {authKey, ...noAuthKeyState} = state;
-      localStorage.setItem('authKey', JSON.stringify(authKey));
+      authKey ? localStorage.setItem('authKey', JSON.stringify(authKey))
+        : localStorage.removeItem('authKey');
       localStorage.setItem('state', JSON.stringify(noAuthKeyState));
     } catch (e) {
       console.warn(e);
