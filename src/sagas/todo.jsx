@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { apiCall } from "../util/axiosApi";
 import { apiCallFailed } from "../actions";
-import { removeTodoFromStorage, saveTodosToStorage } from "../reducers/todos";
+import { removeTodoFromStorage, saveTodosToStorage, toggleTodoInStorage } from "../reducers/todos";
 
 
 export function* fetchTodos() {
@@ -15,8 +15,17 @@ export function* fetchTodos() {
 
 export function* deleteTodo({ id }) {
   try {
-    yield call(apiCall, { method: 'DELETE', url: '/todo', body:{id}, token: true });
+    yield call(apiCall, { method: 'DELETE', url: '/todo', body: { id }, token: true });
     yield put(removeTodoFromStorage(id));
+  } catch (error) {
+    yield put(apiCallFailed(error));
+  }
+}
+
+export function* updateTodo({ id, done }) {
+  try {
+    yield call(apiCall, { method: 'PATCH', url: '/todo/toggle', body: { id, done }, token: true });
+    yield put(toggleTodoInStorage(id, done));
   } catch (error) {
     yield put(apiCallFailed(error));
   }

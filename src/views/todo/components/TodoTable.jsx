@@ -10,6 +10,9 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../../../actions";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { toggleTodo } from "../../../reducers/todos";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -54,13 +57,12 @@ const TodoTable = ({ rows }) => {
   }
 
   function handleToggle(row) {
-    dispatch(deleteTodo(row.id));
+    dispatch(toggleTodo(row.id, !row.done));
   }
-  const onToggleHover = ()=>{
 
+  const onToggleHover = (e)=>{
   };
-  const outToggleHover = ()=>{
-
+  const outToggleHover = (e)=>{
   };
 
 
@@ -71,6 +73,7 @@ const TodoTable = ({ rows }) => {
         <StyledTableCell>Status</StyledTableCell>
         <StyledTableCell>Title</StyledTableCell>
         <StyledTableCell>Task</StyledTableCell>
+        <StyledTableCell>User</StyledTableCell>
         <StyledTableCell>Date limit</StyledTableCell>
         <StyledTableCell>Actions</StyledTableCell>
       </TableRow>
@@ -84,11 +87,12 @@ const TodoTable = ({ rows }) => {
                         onMouseEnter={onToggleHover}
                         onMouseLeave={outToggleHover}
             >
-              <DeleteForeverIcon />
+              {row.done ? <CheckCircleOutlineIcon /> : <RadioButtonUncheckedIcon />}
             </IconButton>
           </StyledTableCell>
           <StyledTableCell>{row.title}</StyledTableCell>
           <StyledTableCell>{row.task}</StyledTableCell>
+          <StyledTableCell>{row.user.username}</StyledTableCell>
           <StyledTableCell>{row.limit}</StyledTableCell>
           <StyledTableCell>
             <IconButton color={"secondary"}  onClick={() => handleDelete(row)}>
