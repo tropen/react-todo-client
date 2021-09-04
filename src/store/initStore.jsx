@@ -4,12 +4,9 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
 import throttle from 'lodash/throttle';
 
-//todo CLEAR
 const initStore = () => {
   const loadState = () => {
     try {
-      // const serializedState = localStorage.getItem('users');
-      // const serializedState = localStorage.getItem('todos');
       const serializedAuth = localStorage.getItem('authKey');
       const serializedState = localStorage.getItem('state');
       if (!serializedState) {
@@ -44,7 +41,11 @@ const initStore = () => {
   sagaMiddleware.run(rootSaga);
 
   store.subscribe(throttle(() => {
-    saveState(store.getState());
+    saveState({
+      authKey: store.getState().authKey,
+      users: store.getState().users,
+      todos: store.getState().todos,
+    });
   }, 500)); //limit too many updates
 
   return store;
