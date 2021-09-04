@@ -5,7 +5,7 @@ const client = axios.create({
   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json;charset=utf-8' }
 });
 
-export const apiCall = ({ method, url, body = null, token = false }) => {
+export const apiCall = async ({ method, url, body = null, token = false }) => {
   if (token) {
     const authKey = JSON.parse(localStorage.getItem('authKey'));
     if (!authKey) {
@@ -14,13 +14,16 @@ export const apiCall = ({ method, url, body = null, token = false }) => {
     client.defaults.headers.common['authentication'] = authKey;
   }
 
-  return client({
-    method,
-    url: process.env.REACT_APP_API_URI + url,
-    data: body,
-  }).then((res) => res.data)
-    .catch((error) => {
-      console.error(error);
-      return Promise.reject(error.response || error.message);
+  try {
+    const res = await client({
+      method,
+      url: process.env.REACT_APP_API_URI + url,
+      data: body,
     });
+
+    return res.data;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error.response || error.message);
+  }
 };
