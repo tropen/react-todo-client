@@ -1,14 +1,13 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import TodoList from "../views/TodoList";
-import TodoAdd from "../views/TodoAdd";
+import TodoList from "../views/todo/TodoList";
+import TodoAdd from "../views/todo/TodoAdd";
 import { Container } from "@material-ui/core";
 import { useSelector } from "react-redux";
 
 const Content = () => {
   const authKey = useSelector(state => state.authKey);
-  if (!authKey)
-  {
+  if (!authKey) {
     return (<Redirect to={'/todo'} />);
   }
 
