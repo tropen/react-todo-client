@@ -10,3 +10,6 @@ export default function authKey(state = '', action) {
       return state;
   }
 }
+
+export const saveAuthKeyToStorage = (authKey) => ({ type: SAVE_AUTH_KEY_TO_STORAGE, authKey });
+export const signOut = () => ({ type: SIGN_OUT });
