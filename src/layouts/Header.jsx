@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppBar, Button, Container, makeStyles, Toolbar } from "@material-ui/core";
-import { signIn, signOut } from "../actions";
+import { signIn } from "../actions";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { Link } from "react-router-dom";
+import { signOut } from "../reducers/authKey";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
