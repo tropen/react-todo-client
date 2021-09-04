@@ -1,5 +1,4 @@
 import { createTheme } from "@material-ui/core/styles";
-import { amber } from "@material-ui/core/colors";
 
 const theme = createTheme({
   typography: {
@@ -22,7 +21,7 @@ const theme = createTheme({
       default: "#656565",
     },
     text: {
-      primary: amber[500],
+      primary: '#fdd835',
     }
   },
 });

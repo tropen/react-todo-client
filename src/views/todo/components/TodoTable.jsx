@@ -4,7 +4,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
-import {  IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
@@ -45,6 +45,11 @@ const useStyles = makeStyles({
     width: '100%',
     border: 0,
   },
+  hover: {
+    '&:hover': {
+      color: '#8BC34A',
+    }
+  }
 });
 
 
@@ -59,12 +64,6 @@ const TodoTable = ({ rows }) => {
   function handleToggle(row) {
     dispatch(toggleTodo(row.id, !row.done));
   }
-
-  const onToggleHover = (e)=>{
-  };
-  const outToggleHover = (e)=>{
-  };
-
 
   return (<><Table className={classes.table}>
     <TableHead>
@@ -83,9 +82,9 @@ const TodoTable = ({ rows }) => {
         <StyledTableRow key={row.id}>
           <StyledTableCell>{row.id_number}</StyledTableCell>
           <StyledTableCell>
-            <IconButton color={"secondary"}  onClick={() => handleToggle(row)}
-                        onMouseEnter={onToggleHover}
-                        onMouseLeave={outToggleHover}
+            <IconButton color={"secondary"}
+                        onClick={() => handleToggle(row)}
+                        className={classes.hover}
             >
               {row.done ? <CheckCircleOutlineIcon /> : <RadioButtonUncheckedIcon />}
             </IconButton>
@@ -95,7 +94,7 @@ const TodoTable = ({ rows }) => {
           <StyledTableCell>{row.user.username}</StyledTableCell>
           <StyledTableCell>{row.limit}</StyledTableCell>
           <StyledTableCell>
-            <IconButton color={"secondary"}  onClick={() => handleDelete(row)}>
+            <IconButton color={"secondary"} onClick={() => handleDelete(row)}>
               <DeleteForeverIcon />
             </IconButton>
           </StyledTableCell>
