@@ -1,0 +1,109 @@
+import React from 'react';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import {  IconButton } from "@material-ui/core";
+import Table from "@material-ui/core/Table";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../../../actions";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    border: 0,
+    fontWeight: 800,
+    fontSize: 20,
+  },
+  body: {
+    border: 0,
+    fontSize: 16,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+    '&:nth-of-type(even)': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+}))(TableRow);
+
+const useStyles = makeStyles({
+  table: {
+    height: '100%',
+    width: '100%',
+    border: 0,
+  },
+});
+
+
+const TodoTable = ({ rows }) => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  function handleDelete(row) {
+    dispatch(deleteTodo(row.id));
+  }
+
+  function handleToggle(row) {
+    dispatch(deleteTodo(row.id));
+  }
+  const onToggleHover = ()=>{
+
+  };
+  const outToggleHover = ()=>{
+
+  };
+
+
+  return (<><Table className={classes.table}>
+    <TableHead>
+      <TableRow>
+        <StyledTableCell>#</StyledTableCell>
+        <StyledTableCell>Status</StyledTableCell>
+        <StyledTableCell>Title</StyledTableCell>
+        <StyledTableCell>Task</StyledTableCell>
+        <StyledTableCell>Date limit</StyledTableCell>
+        <StyledTableCell>Actions</StyledTableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {rows.map((row) => (
+        <StyledTableRow key={row.id}>
+          <StyledTableCell>{row.id_number}</StyledTableCell>
+          <StyledTableCell>
+            <IconButton color={"secondary"}  onClick={() => handleToggle(row)}
+                        onMouseEnter={onToggleHover}
+                        onMouseLeave={outToggleHover}
+            >
+              <DeleteForeverIcon />
+            </IconButton>
+          </StyledTableCell>
+          <StyledTableCell>{row.title}</StyledTableCell>
+          <StyledTableCell>{row.task}</StyledTableCell>
+          <StyledTableCell>{row.limit}</StyledTableCell>
+          <StyledTableCell>
+            <IconButton color={"secondary"}  onClick={() => handleDelete(row)}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </StyledTableCell>
+        </StyledTableRow>
+      ))}
+    </TableBody>
+  </Table>
+  </>);
+};
+
+TodoTable.propTypes = {
+  rows: PropTypes.array
+};
+
+export default TodoTable;
