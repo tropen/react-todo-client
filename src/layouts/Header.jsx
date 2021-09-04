@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppBar, Button, Container, makeStyles, Toolbar } from "@material-ui/core";
 import { signIn } from "../actions";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ListIcon from '@material-ui/icons/List';
 import { Link } from "react-router-dom";
 import { signOut } from "../reducers/authKey";
 
@@ -20,14 +21,25 @@ const Content = () => {
   const classes = useStyles();
 
   const authBtnTitle = authKey ? 'Sign out' : 'Sign in';
-  const addBtn = <Button
+  const buttons = (<><Button
+    color="inherit"
+    variant="outlined"
+    component={Link} to="/todo"
+    endIcon={<ListIcon />}
+    className={classes.menuButton}
+  >
+    List
+  </Button>
+    <Button
     color="inherit"
     variant="outlined"
     component={Link} to="/add"
     endIcon={<AddCircleOutlineIcon />}
+    className={classes.menuButton}
   >
     Add
-  </Button>;
+  </Button></>);
+
 
   return (
     <AppBar position="sticky" color="primary">
@@ -41,8 +53,7 @@ const Content = () => {
           >
             {authBtnTitle}
           </Button>
-
-          {authKey && addBtn}
+          {authKey && buttons}
         </Container>
       </Toolbar>
     </AppBar>
