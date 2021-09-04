@@ -2,20 +2,20 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
-import throttle from 'lodash/throttle';
 
 const initStore = () => {
   const loadState = () => {
     try {
+      let state = {};
       const serializedAuth = localStorage.getItem('authKey');
-      const serializedState = localStorage.getItem('state');
-      if (!serializedState) {
-        return undefined;
-      }
-      const state = JSON.parse(serializedState);
       if (serializedAuth) {
         const authKey = JSON.parse(serializedAuth);
-        return { authKey, ...state };
+        state = { authKey };
+      }
+      const serializedState = localStorage.getItem('state');
+      if (serializedState) {
+        const parsed = JSON.parse(serializedState);
+        state = { ...parsed, ...state };
       }
 
       return state;
@@ -27,7 +27,7 @@ const initStore = () => {
 
   const saveState = (state) => {
     try {
-      const {authKey, ...noAuthKeyState} = state;
+      const { authKey, ...noAuthKeyState } = state;
       authKey ? localStorage.setItem('authKey', JSON.stringify(authKey))
         : localStorage.removeItem('authKey');
       localStorage.setItem('state', JSON.stringify(noAuthKeyState));
@@ -40,13 +40,13 @@ const initStore = () => {
   const store = createStore(rootReducer, loadState(), applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(rootSaga);
 
-  store.subscribe(throttle(() => {
+  store.subscribe(() => {
     saveState({
       authKey: store.getState().authKey,
       users: store.getState().users,
       todos: store.getState().todos,
     });
-  }, 500)); //limit too many updates
+  });
 
   return store;
 };
