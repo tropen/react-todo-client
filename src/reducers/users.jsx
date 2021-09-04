@@ -8,3 +8,5 @@ export default function users(state = [], action) {
       return state;
   }
 }
+
+export const saveUsersToStorage = (users) => ({ type: SAVE_USERS_TO_STORAGE, users });
