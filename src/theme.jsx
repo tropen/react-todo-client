@@ -4,6 +4,7 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, Arial',
     fontSize: 18,
+    htmlFontSize: 18,
     button: {
       fontSize: 16,
     }
@@ -25,6 +26,16 @@ const theme = createTheme({
     }
   },
   overrides: {
+    MuiMenu: {
+      paper: {
+        backgroundColor: '#656565',
+      }
+    },
+    MuiDialog: {
+      paper: {
+        backgroundColor: '#656565',
+      }
+    },
     MuiFormLabel: {
       root: {
         color: '#b79020',
@@ -33,10 +44,10 @@ const theme = createTheme({
         },
       },
     },
-    MuiInput:{
+    MuiInput: {
       underline: {
         '&:before': {
-          borderBottom: '1px solid #673ab7'
+          borderBottom: '1px solid #fdd835'
         },
         '&:after': {
           borderBottom: `2px solid #fdd835`
