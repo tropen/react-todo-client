@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 
 const TodoAdd = () => {
   const authKey = useSelector(state => state.authKey);
-  // const todos = useSelector(state => state.todos);
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
@@ -26,7 +26,7 @@ const TodoAdd = () => {
     }
   }, [dispatch, authKey]);
 
-  return (<AddForm />);
+  return (<AddForm users={users} />);
 };
 
 export default TodoAdd;
