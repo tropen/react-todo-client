@@ -24,5 +24,28 @@ const theme = createTheme({
       primary: '#fdd835',
     }
   },
+  overrides: {
+    MuiFormLabel: {
+      root: {
+        color: '#b79020',
+        "&$focused": {
+          color: '#b79020'
+        },
+      },
+    },
+    MuiInput:{
+      underline: {
+        '&:before': {
+          borderBottom: '1px solid #673ab7'
+        },
+        '&:after': {
+          borderBottom: `2px solid #fdd835`
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottom: `2px solid #8BC34A`
+        }
+      }
+    },
+  }
 });
 export default theme;

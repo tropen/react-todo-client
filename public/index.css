@@ -2,3 +2,21 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.MuiTableRow-root td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.MuiTableRow-root th:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.MuiTableRow-root th:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+.MuiTableRow-root td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
