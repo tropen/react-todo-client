@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
   typography: {
@@ -19,13 +19,28 @@ const theme = createTheme({
       contrastText: '#673ab7',
     },
     background: {
-      default: "#656565",
+      default: '#656565',
     },
     text: {
       primary: '#fdd835',
     }
   },
   overrides: {
+    MuiPickersCalendarHeader: {
+      iconButton: {
+        color: '#673ab7',
+        backgroundColor: '#fdd835',
+        '&:hover': {
+          color: '#fdd835',
+          backgroundColor: '#673ab7',
+        }
+      }
+    },
+    MuiButton: {
+      textPrimary: {
+        color: '#fdd835',
+      }
+    },
     MuiMenu: {
       paper: {
         backgroundColor: '#656565',
@@ -39,7 +54,7 @@ const theme = createTheme({
     MuiFormLabel: {
       root: {
         color: '#b79020',
-        "&$focused": {
+        '&$focused': {
           color: '#b79020'
         },
       },

@@ -13,7 +13,7 @@ export default function todos(state = [], action) {
     case REMOVE_TODO_FROM_STORAGE:
       return state.filter(todo => todo.id !== action.id);
     case ADD_TODO_TO_STORAGE:
-      return state.filter(todo => todo.id !== action.id);
+      return [ ...state, action.todo];
     case TOGGLE_TODO_IN_STORAGE:
       state.find(todo => todo.id === action.id)['done'] = action.done;
       return [...state,];
@@ -26,6 +26,6 @@ export default function todos(state = [], action) {
 
 export const saveTodosToStorage = todos => ({ type: SAVE_TODOS_TO_STORAGE, todos });
 export const removeTodoFromStorage = id => ({ type: REMOVE_TODO_FROM_STORAGE, id });
-export const addTodoFromStorage = todo => ({ type: ADD_TODO_TO_STORAGE, todo });
+export const addTodoToStorage = todo => ({ type: ADD_TODO_TO_STORAGE, todo });
 export const toggleTodo = (id, done) => ({ type: types.TOGGLE_TODO, id, done });
 export const toggleTodoInStorage = (id, done) => ({ type: types.TOGGLE_TODO_IN_STORAGE, id, done });
