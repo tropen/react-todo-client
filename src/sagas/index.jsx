@@ -2,15 +2,7 @@ import { takeEvery } from 'redux-saga/effects';
 import { fetchAuthKey } from "./auth";
 import { fetchUsersRequest } from "./user";
 import { addTodoRequest, deleteTodoRequest, fetchTodosRequest, toggleTodoRequest, } from "./todo";
-import {
-  ADD_TODO,
-  DELETE_TODO,
-  FETCH_AUTH_KEY,
-  FETCH_FAILED,
-  FETCH_TODOS,
-  FETCH_USERS,
-  TOGGLE_TODO
-} from "../constants/actions";
+import { ADD_TODO, DELETE_TODO, FETCH_AUTH_KEY, FETCH_TODOS, FETCH_USERS, TOGGLE_TODO } from "../constants/actions";
 
 export default function* rootSaga() {
   yield takeEvery(FETCH_AUTH_KEY, fetchAuthKey);
@@ -36,5 +28,3 @@ export const addTodo = ({ user_id, title, task, limit, done }, callback) => ({
   done,
   callback
 });
-
-export const apiCallFailed = error => ({ type: FETCH_FAILED, error });
