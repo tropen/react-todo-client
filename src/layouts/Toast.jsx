@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeMessage } from "../reducers/toast";
 import { Slide } from "@material-ui/core";
 
+const CLOSE_ON_CLICK = "clickaway";
+
 export const Toast = () => {
   const dispatch = useDispatch();
   const open = useSelector(state => state.toast.open);
@@ -12,7 +14,7 @@ export const Toast = () => {
   const severity = useSelector(state => state.toast.severity);
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === CLOSE_ON_CLICK) {
       return;
     }
     dispatch(closeMessage(message, severity));
