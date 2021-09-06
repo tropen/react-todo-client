@@ -107,14 +107,14 @@ const AddForm = ({ users }) => {
                 />
               </Grid>
               <Grid item style={{ marginTop: 16 }}>
-                <Button color="secondary"
+                <Button color="primary"
                         variant="contained"
                         component={Link} to="/todo"
                         disabled={submitting}
                 >Cancel</Button>
               </Grid>
               <Grid item style={{ marginTop: 16 }}>
-                <Button color="primary"
+                <Button color="secondary"
                         variant="contained"
                         type="submit"
                         disabled={submitting}
