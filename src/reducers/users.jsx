@@ -1,4 +1,4 @@
-import { SAVE_USERS_TO_STORAGE } from '../constants/ActionTypes';
+import { SAVE_USERS_TO_STORAGE } from '../constants/actions';
 
 export default function users(state = [], action) {
   switch (action.type) {

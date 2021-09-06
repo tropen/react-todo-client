@@ -1,4 +1,4 @@
-import { SET_TOAST } from "../constants/ActionTypes";
+import { SET_TOAST } from "../constants/actions";
 
 const initialState = {
   open: false,

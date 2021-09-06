@@ -1,10 +1,9 @@
 import { call, put } from "redux-saga/effects";
 import { apiCall } from "../util/axiosApi";
-import { apiCallFailed } from "../actions";
 import { addTodoToStorage, removeTodoFromStorage, saveTodosToStorage, toggleTodoInStorage } from "../reducers/todos";
+import { apiCallFailed } from "./index";
 
-
-export function* fetchTodos() {
+export function* fetchTodosRequest() {
   try {
     const data = yield call(apiCall, { method: 'GET', url: '/todo', token: true });
     yield put(saveTodosToStorage(data));
@@ -13,7 +12,7 @@ export function* fetchTodos() {
   }
 }
 
-export function* deleteTodo({ id }) {
+export function* deleteTodoRequest({ id }) {
   try {
     yield call(apiCall, { method: 'DELETE', url: '/todo', body: { id }, token: true });
     yield put(removeTodoFromStorage(id));
@@ -22,7 +21,7 @@ export function* deleteTodo({ id }) {
   }
 }
 
-export function* updateTodo({ id, done }) {
+export function* toggleTodoRequest({ id, done }) {
   try {
     yield call(apiCall, { method: 'PATCH', url: '/todo/toggle', body: { id, done }, token: true });
     yield put(toggleTodoInStorage(id, done));
@@ -31,10 +30,15 @@ export function* updateTodo({ id, done }) {
   }
 }
 
-export function* addTodo({ user_id, title, task, limit, done }) {
+export function* addTodoRequest({ user_id, title, task, limit, done }) {
   try {
-    const data = yield call(apiCall, { method: 'POST', url: '/todo/', body: { user_id, title, task, limit, done }, token: true });
-    //todo add toast
+    const data = yield call(apiCall, {
+      method: 'POST',
+      url: '/todo/',
+      body: { user_id, title, task, limit, done },
+      token: true
+    });
+    console.log('addTodoToStorage', data);
     yield put(addTodoToStorage(data.todo));
   } catch (error) {
     yield put(apiCallFailed(error));

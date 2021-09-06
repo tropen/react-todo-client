@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getTodos } from "../../actions/";
 import TableContainer from '@material-ui/core/TableContainer';
 import TodoTable from "./components/TodoTable";
 import PropTypes from "prop-types";
 import moment from 'moment';
+import { getTodos } from "../../sagas";
 
 const prepareRows = (todos) => {
   return todos.map((item, index) => {

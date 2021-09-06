@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import DateFnsUtils from '@date-io/date-fns';
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../../actions";
+import { addTodo } from "../../../sagas";
 
 const validate = (values) => {
   const errors = {};

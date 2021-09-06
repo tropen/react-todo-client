@@ -1,4 +1,4 @@
-import { SAVE_AUTH_KEY_TO_STORAGE, SIGN_OUT } from '../constants/ActionTypes';
+import { SAVE_AUTH_KEY_TO_STORAGE, SIGN_OUT } from '../constants/actions';
 
 export default function authKey(state = '', action) {
   switch (action.type) {

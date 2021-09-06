@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { apiCall } from "../util/axiosApi";
-import { apiCallFailed, } from "../actions";
 import { saveAuthKeyToStorage } from "../reducers/authKey";
+import { apiCallFailed } from "./index";
 
 export function* fetchAuthKey() {
   try {

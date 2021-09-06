@@ -8,11 +8,10 @@ import { IconButton } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../../../actions";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { toggleTodo } from "../../../reducers/todos";
+import { toggleTodo, deleteTodo } from "../../../sagas";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

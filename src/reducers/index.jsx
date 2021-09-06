@@ -10,5 +10,3 @@ export default combineReducers({
   users,
   toast,
 });
-
-//todo add  FETCH_FAILED and test
