@@ -1,9 +1,10 @@
 import { SET_TOAST } from "../constants/actions";
+import { ERROR } from "../constants/messageTypes";
 
 const initialState = {
   open: false,
   message: null,
-  severity: 'error'
+  severity: ERROR
 };
 
 export default function toast(state = initialState, action) {
@@ -22,5 +23,5 @@ export default function toast(state = initialState, action) {
   }
 }
 
-export const showMessage = (msg, severity ='error') => ({type: SET_TOAST, open: true, msg, severity});
-export const closeMessage = (msg, severity ='error') => ({type: SET_TOAST, open: false, msg, severity});
+export const showMessage = (message, severity = ERROR) => ({ type: SET_TOAST, open: true, message, severity });
+export const closeMessage = (message, severity = ERROR) => ({ type: SET_TOAST, open: false, message, severity });
