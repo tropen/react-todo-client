@@ -13,7 +13,6 @@ export default function todos(state = [], action) {
     case REMOVE_TODO_FROM_STORAGE:
       return state.filter(todo => todo.id !== action.id);
     case ADD_TODO_TO_STORAGE:
-      console.log('add to storage', action);
       return [...state, action.todo];
     case TOGGLE_TODO_IN_STORAGE:
       state.find(todo => todo.id === action.id)['done'] = action.done;

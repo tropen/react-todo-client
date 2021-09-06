@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { toggleTodo, deleteTodo } from "../../../sagas";
+import { deleteTodo, toggleTodo } from "../../../sagas";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -90,7 +90,7 @@ const TodoTable = ({ rows }) => {
           </StyledTableCell>
           <StyledTableCell>{row.title}</StyledTableCell>
           <StyledTableCell>{row.task}</StyledTableCell>
-          <StyledTableCell>{row.user.username}</StyledTableCell>
+          <StyledTableCell>{row.user.name}</StyledTableCell>
           <StyledTableCell>{row.limit}</StyledTableCell>
           <StyledTableCell>
             <IconButton color={"secondary"} onClick={() => handleDelete(row)}>

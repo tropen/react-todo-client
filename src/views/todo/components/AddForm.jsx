@@ -38,13 +38,13 @@ const AddForm = ({ users }) => {
     if (values.done === undefined) {
       values.done = false;
     }
-    dispatch(addTodo(values));
-    history.push('/todo');
+    const addCallback = () => history.push('/app');
+    dispatch(addTodo(values, addCallback));
   };
 
   const userMenuItems = users.map((user) =>
     <MenuItem key={user.id} value={user.id}>
-      {user.username}
+      {user.name}
     </MenuItem>
   );
   const select =

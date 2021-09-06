@@ -30,7 +30,7 @@ export function* toggleTodoRequest({ id, done }) {
   }
 }
 
-export function* addTodoRequest({ user_id, title, task, limit, done }) {
+export function* addTodoRequest({ user_id, title, task, limit, done, callback }) {
   try {
     const data = yield call(apiCall, {
       method: 'POST',
@@ -38,8 +38,8 @@ export function* addTodoRequest({ user_id, title, task, limit, done }) {
       body: { user_id, title, task, limit, done },
       token: true
     });
-    console.log('addTodoToStorage', data);
     yield put(addTodoToStorage(data.todo));
+    yield put(callback());
   } catch (error) {
     yield put(apiCallFailed(error));
   }

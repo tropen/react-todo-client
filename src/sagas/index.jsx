@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
 import { fetchAuthKey } from "./auth";
 import { fetchUsersRequest } from "./user";
-import { fetchTodosRequest, deleteTodoRequest, toggleTodoRequest, addTodoRequest, } from "./todo";
+import { addTodoRequest, deleteTodoRequest, fetchTodosRequest, toggleTodoRequest, } from "./todo";
 import {
   ADD_TODO,
   DELETE_TODO,
@@ -27,13 +27,14 @@ export const getUsers = () => ({ type: FETCH_USERS });
 export const getTodos = () => ({ type: FETCH_TODOS });
 export const deleteTodo = id => ({ type: DELETE_TODO, id });
 export const toggleTodo = (id, done) => ({ type: TOGGLE_TODO, id, done });
-export const addTodo = ({ user_id, title, task, limit, done }) => ({
+export const addTodo = ({ user_id, title, task, limit, done }, callback) => ({
   type: ADD_TODO,
   user_id,
   title,
   task,
   limit,
-  done
+  done,
+  callback
 });
 
 export const apiCallFailed = error => ({ type: FETCH_FAILED, error });
