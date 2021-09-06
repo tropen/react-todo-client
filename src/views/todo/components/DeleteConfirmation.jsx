@@ -1,4 +1,4 @@
-import React from 'react'; //, { useEffect }
+import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
