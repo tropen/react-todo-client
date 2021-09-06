@@ -1,4 +1,4 @@
-#react-todo-client
+# React Todo Client 🐡
 
 1. `git clone https://github.com/tropen/react-todo-client.git`
 2. `cd node-todo-server && cp .env-example .env`
