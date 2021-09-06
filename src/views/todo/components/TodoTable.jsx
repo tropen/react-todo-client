@@ -58,61 +58,61 @@ const TodoTable = ({ rows }) => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [rowId, setRowId] = React.useState('');
 
-  function closeDialog() {
+  const closeDialog = () => {
     setIsDialogOpen(false);
-  }
+  };
 
-  function handleDelete(row) {
+  const handleDelete = (row) => {
     setRowId(row.id);
     setIsDialogOpen(true);
-  }
+  };
 
-  function onDialogOk()
-  {
+  const onDialogOk = () => {
     dispatch(deleteTodo(rowId));
-  }
+  };
 
-  function handleToggle(row) {
+  const handleToggle = (row) => {
     dispatch(toggleTodo(row.id, !row.done));
-  }
+  };
 
-  return (<><Table className={classes.table}>
-    <TableHead>
-      <TableRow>
-        <StyledTableCell>#</StyledTableCell>
-        <StyledTableCell>Status</StyledTableCell>
-        <StyledTableCell>Title</StyledTableCell>
-        <StyledTableCell>Task</StyledTableCell>
-        <StyledTableCell>User</StyledTableCell>
-        <StyledTableCell>Date limit</StyledTableCell>
-        <StyledTableCell>Actions</StyledTableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {rows.map((row) => (
-        <StyledTableRow key={row.id}>
-          <StyledTableCell>{row.id_number}</StyledTableCell>
-          <StyledTableCell>
-            <IconButton color={"secondary"}
-                        onClick={() => handleToggle(row)}
-                        className={classes.hover}
-            >
-              {row.done ? <CheckCircleOutlineIcon /> : <RadioButtonUncheckedIcon />}
-            </IconButton>
-          </StyledTableCell>
-          <StyledTableCell>{row.title}</StyledTableCell>
-          <StyledTableCell>{row.task}</StyledTableCell>
-          <StyledTableCell>{row.user.name}</StyledTableCell>
-          <StyledTableCell>{row.limit}</StyledTableCell>
-          <StyledTableCell>
-            <IconButton color={"secondary"} onClick={() => handleDelete(row)}>
-              <DeleteForeverIcon />
-            </IconButton>
-          </StyledTableCell>
-        </StyledTableRow>
-      ))}
-    </TableBody>
-  </Table>
+  return (<>
+    <Table className={classes.table}>
+      <TableHead>
+        <TableRow>
+          <StyledTableCell>#</StyledTableCell>
+          <StyledTableCell>Status</StyledTableCell>
+          <StyledTableCell>Title</StyledTableCell>
+          <StyledTableCell>Task</StyledTableCell>
+          <StyledTableCell>User</StyledTableCell>
+          <StyledTableCell>Date limit</StyledTableCell>
+          <StyledTableCell>Actions</StyledTableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row) => (
+          <StyledTableRow key={row.id}>
+            <StyledTableCell>{row.id_number}</StyledTableCell>
+            <StyledTableCell>
+              <IconButton color={"secondary"}
+                          onClick={() => handleToggle(row)}
+                          className={classes.hover}
+              >
+                {row.done ? <CheckCircleOutlineIcon /> : <RadioButtonUncheckedIcon />}
+              </IconButton>
+            </StyledTableCell>
+            <StyledTableCell>{row.title}</StyledTableCell>
+            <StyledTableCell>{row.task}</StyledTableCell>
+            <StyledTableCell>{row.user.name}</StyledTableCell>
+            <StyledTableCell>{row.limit}</StyledTableCell>
+            <StyledTableCell>
+              <IconButton color={"secondary"} onClick={() => handleDelete(row)}>
+                <DeleteForeverIcon />
+              </IconButton>
+            </StyledTableCell>
+          </StyledTableRow>
+        ))}
+      </TableBody>
+    </Table>
     <DeleteConfirmation isOpen={isDialogOpen}
                         onOkClicked={onDialogOk}
                         closeDialog={closeDialog}
