@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import { Box, Button, Grid, MenuItem, Typography } from "@material-ui/core";
 import { Checkboxes, DateTimePicker, Select, TextField } from 'mui-rff';
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DateFnsUtils from '@date-io/date-fns';
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
@@ -32,12 +32,14 @@ const useStyles = makeStyles((theme) => ({
 const AddForm = ({ users }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const onSubmit = async (values) => {
     if (values.done === undefined) {
       values.done = false;
     }
     dispatch(addTodo(values));
+    history.push('/todo');
   };
 
   const userMenuItems = users.map((user) =>
