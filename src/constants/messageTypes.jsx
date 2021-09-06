@@ -1,3 +1,4 @@
 export const SUCCESS = "success";
 export const ERROR = "error";
-export const INFO = "warning";
+export const INFO = "info";
+export const WARNING = "warning";

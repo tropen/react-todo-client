@@ -12,6 +12,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { deleteTodo, toggleTodo } from "../../../sagas";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -55,9 +56,21 @@ const useStyles = makeStyles({
 const TodoTable = ({ rows }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [rowId, setRowId] = React.useState('');
+
+  function closeDialog() {
+    setIsDialogOpen(false);
+  }
 
   function handleDelete(row) {
-    dispatch(deleteTodo(row.id));
+    setRowId(row.id);
+    setIsDialogOpen(true);
+  }
+
+  function onDialogOk()
+  {
+    dispatch(deleteTodo(rowId));
   }
 
   function handleToggle(row) {
@@ -101,6 +114,10 @@ const TodoTable = ({ rows }) => {
       ))}
     </TableBody>
   </Table>
+    <DeleteConfirmation isOpen={isDialogOpen}
+                        onOkClicked={onDialogOk}
+                        closeDialog={closeDialog}
+    />
   </>);
 };
 
