@@ -52,7 +52,6 @@ const useStyles = makeStyles({
   }
 });
 
-
 const TodoTable = ({ rows }) => {
   const classes = useStyles();
   const dispatch = useDispatch();

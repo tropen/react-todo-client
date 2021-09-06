@@ -3,6 +3,7 @@ import { apiCall } from "../util/axiosApi";
 import { addTodoToStorage, removeTodoFromStorage, saveTodosToStorage, toggleTodoInStorage } from "../reducers/todos";
 import { showMessage } from "../reducers/toast";
 import { SUCCESS } from "../constants/messageTypes";
+import PropTypes from "prop-types";
 
 export function* fetchTodosRequest() {
   try {
@@ -23,6 +24,10 @@ export function* deleteTodoRequest({ id }) {
   }
 }
 
+deleteTodoRequest.propTypes = {
+  id: PropTypes.string
+};
+
 export function* toggleTodoRequest({ id, done }) {
   try {
     yield call(apiCall, { method: 'PATCH', url: '/todo/toggle', body: { id, done }, token: true });
@@ -32,6 +37,11 @@ export function* toggleTodoRequest({ id, done }) {
     yield put(showMessage(error));
   }
 }
+
+toggleTodoRequest.propTypes = {
+  id: PropTypes.string,
+  done: PropTypes.bool,
+};
 
 export function* addTodoRequest({ user_id, title, task, limit, done, callback }) {
   try {
@@ -48,3 +58,12 @@ export function* addTodoRequest({ user_id, title, task, limit, done, callback })
     yield put(showMessage(error));
   }
 }
+
+addTodoRequest.propTypes = {
+  user_id: PropTypes.string,
+  title: PropTypes.string,
+  task: PropTypes.string,
+  limit: PropTypes.string,
+  done: PropTypes.bool,
+  callback: PropTypes.func,
+};
